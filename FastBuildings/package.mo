@@ -6,13 +6,7 @@ package FastBuildings "Low order building simulation models"
   import IDEAS;
 
 
-
-
-
-
-
-
-  annotation(uses(Modelica(version = "3.2")),  Documentation(info = "<html>
+  annotation(uses(Modelica(version="3.2.1")),  Documentation(info = "<html>
 <p>This package contains light (few-states) building models. </p>
 <p>The conventions for orientations are (in radials):</p>
 <p><ul>
@@ -27,5 +21,6 @@ package FastBuildings "Low order building simulation models"
 <li>pi/2 = vertical </li>
 <li>pi = horizontal, exposed to centre of the earth (TO BE CHECKED)</li>
 </ul></p>
-</html>"), version = "0.0", Icon, Diagram);
+</html>"), version="0.1",   Icon, Diagram,
+  conversion(noneFromVersion="0.0"));
 end FastBuildings;
