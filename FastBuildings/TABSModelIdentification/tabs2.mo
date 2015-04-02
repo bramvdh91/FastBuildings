@@ -1,4 +1,4 @@
-within FastBuildings;
+within FastBuildings.TABSModelIdentification;
 model tabs2
 
   parameter SI.HeatCapacity cIn = 1 "Thermal capacity of inner slab";
