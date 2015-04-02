@@ -2,15 +2,13 @@ within FastBuildings.TABSModelIdentification;
 model tabsSimple
   "Simple tabs model using heat flow as input, and with a single resistance value for top and bottom layers"
 
-  parameter SI.HeatCapacity cIn = 1 "Thermal capacity of inner slab";
-  parameter SI.ThermalResistance rIn = 1
-    "Total thermal resistance of the inner slab, in K/W";
-  parameter SI.HeatCapacity cOut = 1 "Thermal capacity of outer slab";
-  parameter SI.ThermalResistance rOut = 1
-    "Total thermal resistance of the outer slab, in K/W";
-  parameter SI.ThermalResistance rSurIn = 1
+  parameter SI.HeatCapacity cUp = 1 "Thermal capacity of inner slab";
+  parameter SI.HeatCapacity cDown = 1 "Thermal capacity of outer slab";
+  parameter SI.ThermalResistance r = 1
+    "Total thermal resistance of one half of the slab, in K/W";
+  parameter SI.ThermalResistance rSurUp = 1
     "Conv + rad resistance of the inside surface, in K/W";
-  parameter SI.ThermalResistance rSurOut = 1
+  parameter SI.ThermalResistance rSurDown = 1
     "Conv + rad resistance of the outside surface, in K/W";
 
   Zones.BaseClasses.Capacitor capUp(c=cUp) annotation (Placement(transformation(
