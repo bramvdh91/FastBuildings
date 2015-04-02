@@ -1,11 +1,14 @@
 within FastBuildings.TABSModelIdentification;
-model tabsSimTemp "Simple tabs model using Pipe temperature as input, and with a single resistance value for top and bottom layers
-  In addition, there is a longitudinal resistance from the temperature input to the central point in the floor."
+model tabsTempMCap
+  "Simple tabs model using Pipe temperature as input, and with a single resistance value for top and bottom layers. Additionally, there is a resistance from the pipe to the central point in the floor, at which a third capacitance is added."
 
   parameter SI.HeatCapacity cUp = 1 "Thermal capacity of inner slab";
-  parameter SI.ThermalResistance r = 1
+  parameter SI.ThermalResistance rIn = 1
     "Total thermal resistance of the inner slab, in K/W";
   parameter SI.HeatCapacity cDown = 1 "Thermal capacity of outer slab";
+  parameter SI.HeatCapacity cMid = 1 "Thermal capacity of outer slab";
+  parameter SI.ThermalResistance r = 1
+    "Total thermal resistance of the outer slab, in K/W";
   parameter SI.ThermalResistance rSurUp = 1
     "Conv + rad resistance of the inside surface, in K/W";
   parameter SI.ThermalResistance rSurDown = 1
@@ -66,6 +69,11 @@ model tabsSimTemp "Simple tabs model using Pipe temperature as input, and with a
     annotation (Placement(transformation(extent={{-130,-20},{-90,20}})));
   Zones.BaseClasses.Resistance resLong(r=rLong)
     annotation (Placement(transformation(extent={{-42,-10},{-22,10}})));
+  Zones.BaseClasses.Capacitor capMid(c=cMid) annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={22,0})));
 equation
   connect(resUp1.heaPor_b,resUp2. heaPor_a) annotation (Line(
       points={{5.55112e-16,20},{-6.66134e-16,20},{-6.66134e-16,40}},
@@ -123,7 +131,11 @@ equation
       points={{-42,0},{-60,0}},
       color={191,0,0},
       smooth=Smooth.None));
+  connect(resUp1.heaPor_a, capMid.heaPor) annotation (Line(
+      points={{-5.55112e-016,0},{0,0},{0,1.77636e-015},{12,1.77636e-015}},
+      color={191,0,0},
+      smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -140},{100,120}}), graphics), Icon(coordinateSystem(extent={{-100,-140},
             {100,120}})));
-end tabsSimTemp;
+end tabsTempMCap;
