@@ -7,10 +7,6 @@ model tabs3Inp
   parameter SI.HeatCapacity cMid = 1 "Thermal capacity of outer slab";
   parameter SI.ThermalResistance r = 1
     "Total thermal resistance of one half of the slab, in K/W";
-  parameter SI.ThermalResistance rSurUp = 1
-    "Conv + rad resistance of the inside surface, in K/W";
-  parameter SI.ThermalResistance rSurDown = 1
-    "Conv + rad resistance of the outside surface, in K/W";
 
   Zones.BaseClasses.Capacitor capUp(c=cUp) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
