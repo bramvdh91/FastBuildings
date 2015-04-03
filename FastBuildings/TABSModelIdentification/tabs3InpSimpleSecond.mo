@@ -2,7 +2,8 @@ within FastBuildings.TABSModelIdentification;
 model tabs3InpSimpleSecond
   "Simple tabs model using heat flow as input, and with a single resistance value for top and bottom layers, one capacity per half slab"
 
-  parameter SI.HeatCapacity cMid = 1 "Thermal capacity of outer slab";
+  parameter SI.HeatCapacity cUp = 1 "Thermal capacity of upper slab";
+  parameter SI.HeatCapacity cDown = 1 "Thermal capacity of lower slab";
   parameter SI.ThermalResistance r = 1
     "Total thermal resistance of one half of the slab, in K/W";
 
@@ -70,7 +71,6 @@ equation
       points={{-4.44089e-016,-74},{0,-74},{0,-90},{-20,-90}},
       color={191,0,0},
       smooth=Smooth.None));
-
 
   connect(resDown1.heaPor_a, resDown2.heaPor_b) annotation (Line(
       points={{0,-38},{0,-54}},
