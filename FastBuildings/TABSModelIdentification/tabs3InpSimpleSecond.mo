@@ -1,10 +1,14 @@
 within FastBuildings.TABSModelIdentification;
-model tabs3InpSimple
-  "Simple tabs model using heat flow as input, and with a single resistance value for top and bottom layers, only 1 capacity"
+model tabs3InpSimpleSecond
+  "Simple tabs model using heat flow as input, and with a single resistance value for top and bottom layers, with an inlet capacity and a capacity in the middle of the floor"
 
   parameter SI.HeatCapacity cMid = 1 "Thermal capacity of outer slab";
+  parameter SI.HeatCapacity cIn = 1
+    "Thermal capacity at which energy is added to the floor";
   parameter SI.ThermalResistance r = 1
     "Total thermal resistance of one half of the slab, in K/W";
+  parameter SI.ThermalResistance rLong = 1
+    "Thermal resistance of the horizontal heat transfer, in K/W";
 
   Zones.BaseClasses.Resistance resUp(r=r) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -34,6 +38,12 @@ model tabs3InpSimple
     annotation (Placement(transformation(extent={{-40,-100},{-20,-80}})));
   Modelica.Blocks.Interfaces.RealInput TInDown
     annotation (Placement(transformation(extent={{-128,-110},{-88,-70}})));
+  Zones.BaseClasses.Capacitor capIn(c=cIn) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={-38,-32})));
+  Zones.BaseClasses.Resistance resLong(r=rLong)
+    annotation (Placement(transformation(extent={{-28,-10},{-8,10}})));
 equation
   connect(preQIn.Q_flow, QIn) annotation (Line(
       points={{-74,0},{-106,0}},
@@ -70,13 +80,20 @@ equation
           40}},
       color={191,0,0},
       smooth=Smooth.None));
-
-  connect(preQIn.port, resUp.heaPor_a) annotation (Line(
-      points={{-54,0},{0,0},{6.66134e-016,10},{0,10},{0,40},{-5.55112e-016,40}},
-
+  connect(preQIn.port, capIn.heaPor) annotation (Line(
+      points={{-54,0},{-38,0},{-38,-22}},
       color={191,0,0},
       smooth=Smooth.None));
+  connect(resLong.heaPor_a, capIn.heaPor) annotation (Line(
+      points={{-28,0},{-38,0},{-38,-22}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(resLong.heaPor_b, resUp.heaPor_a) annotation (Line(
+      points={{-8,0},{0,0},{6.66134e-016,10},{0,10},{0,40},{-5.55112e-016,40}},
+      color={191,0,0},
+      smooth=Smooth.None));
+
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -140},{100,120}}), graphics), Icon(coordinateSystem(extent={{-100,-140},
             {100,120}})));
-end tabs3InpSimple;
+end tabs3InpSimpleSecond;
