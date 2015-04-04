@@ -3,8 +3,6 @@ model tabsTempMCap
   "Simple tabs model using Pipe temperature as input, and with a single resistance value for top and bottom layers. Additionally, there is a resistance from the pipe to the central point in the floor, at which a third capacitance is added."
 
   parameter SI.HeatCapacity cUp = 1 "Thermal capacity of inner slab";
-  parameter SI.ThermalResistance rIn = 1
-    "Total thermal resistance of the inner slab, in K/W";
   parameter SI.HeatCapacity cDown = 1 "Thermal capacity of outer slab";
   parameter SI.HeatCapacity cMid = 1 "Thermal capacity of outer slab";
   parameter SI.ThermalResistance r = 1

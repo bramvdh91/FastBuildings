@@ -24,7 +24,7 @@ model tabs3InpSecond
   Modelica.Blocks.Interfaces.RealInput QIn
     annotation (Placement(transformation(extent={{-126,-20},{-86,20}})));
   HT.Sensors.TemperatureSensor TMiddle
-    annotation (Placement(transformation(extent={{52,2},{72,22}})));
+    annotation (Placement(transformation(extent={{54,10},{74,30}})));
   Zones.BaseClasses.Capacitor capMid(c=cMid) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
@@ -71,8 +71,7 @@ equation
       smooth=Smooth.None));
 
   connect(TMiddle.port, resUp.heaPor_a) annotation (Line(
-      points={{52,12},{26,12},{26,0},{0,0},{6.66134e-016,10},{0,10},{0,40},{-5.55112e-016,
-          40}},
+      points={{54,20},{26,20},{26,0},{0,0},{0,40},{-5.55112e-016,40}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(capMid.heaPor, resUp.heaPor_a) annotation (Line(

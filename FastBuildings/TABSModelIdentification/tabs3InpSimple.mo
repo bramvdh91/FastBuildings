@@ -73,9 +73,9 @@ equation
 
   connect(preQIn.port, resUp.heaPor_a) annotation (Line(
       points={{-54,0},{0,0},{6.66134e-016,10},{0,10},{0,40},{-5.55112e-016,40}},
-
       color={191,0,0},
       smooth=Smooth.None));
+
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -140},{100,120}}), graphics), Icon(coordinateSystem(extent={{-100,-140},
             {100,120}})));
